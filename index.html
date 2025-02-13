@@ -17,8 +17,9 @@
             background: linear-gradient(to bottom, #f9e6ff, #e6ccff);
             overflow: hidden;
         }
+
         .book-container {
-            width: 60vw;
+            width: 80vw;
             height: 80vh;
             overflow: hidden;
             position: relative;
@@ -27,12 +28,14 @@
             border-radius: 15px;
             background: white;
         }
+
         .book {
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
+
         .page {
-            min-width: 60vw;
+            min-width: 80vw;
             height: 80vh;
             display: flex;
             flex-direction: column;
@@ -44,41 +47,47 @@
             box-sizing: border-box;
             background: white;
         }
+
         .page:nth-child(odd) {
             background: #fdf2ff;
         }
+
         h1 {
             font-family: 'Sacramento', cursive;
-            font-size: 4vw;
+            font-size: 5vw;
             color: #6A0DAD;
             text-shadow: 2px 2px 5px rgba(106, 13, 173, 0.3);
             margin-bottom: 10px;
         }
+
         h3 {
-            font-size: 2vw;
+            font-size: 3vw;
             font-weight: bold;
             color: #8A2BE2;
         }
+
         p {
-            font-size: 1.8vw;
+            font-size: 2.5vw;
             color: #222;
             line-height: 1.5;
             max-width: 80%;
             font-family: 'Raleway', sans-serif;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
+
         .quote {
             font-style: italic;
-            font-size: 1.5vw;
+            font-size: 2vw;
             margin-top: 20px;
             color: #777;
         }
-        
+
         /* Cuore Animato */
         .heart {
-            font-size: 5vw;
+            font-size: 10vw; /* Più grande per desktop */
             margin-top: 10px;
             animation: heartbeat 1.5s infinite;
+            z-index: 10; /* Assicuriamoci che sia sopra */
         }
 
         @keyframes heartbeat {
@@ -97,17 +106,92 @@
             top: 50%;
             transform: translateY(-50%);
         }
+
         .controls button {
             background: none;
             border: none;
-            font-size: 3vw;
+            font-size: 6vw;
             cursor: pointer;
             color: #6A0DAD;
             transition: transform 0.2s ease, color 0.2s ease;
         }
+
         .controls button:hover {
             transform: scale(1.2);
             color: #8A2BE2;
+        }
+
+        /* Responsività per schermi piccoli */
+        @media (max-width: 768px) {
+            .book-container {
+                width: 90vw;
+                height: 70vh;
+            }
+
+            .page {
+                min-width: 90vw;
+                height: 70vh;
+            }
+
+            h1 {
+                font-size: 8vw;
+            }
+
+            h3 {
+                font-size: 5vw;
+            }
+
+            p {
+                font-size: 4vw;
+            }
+
+            .quote {
+                font-size: 3vw;
+            }
+
+            .heart {
+                font-size: 12vw; /* Ancora più grande su mobile */
+            }
+
+            .controls button {
+                font-size: 8vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book-container {
+                width: 95vw;
+                height: 60vh;
+            }
+
+            .page {
+                min-width: 95vw;
+                height: 60vh;
+            }
+
+            h1 {
+                font-size: 10vw;
+            }
+
+            h3 {
+                font-size: 7vw;
+            }
+
+            p {
+                font-size: 5vw;
+            }
+
+            .quote {
+                font-size: 4vw;
+            }
+
+            .heart {
+                font-size: 15vw; /* Ancora più grande */
+            }
+
+            .controls button {
+                font-size: 10vw;
+            }
         }
     </style>
 </head>
@@ -162,7 +246,7 @@
         const pages = document.querySelectorAll(".page");
 
         function updateBookPosition() {
-            book.style.transform = `translateX(-${currentPage * 60}vw)`;
+            book.style.transform = `translateX(-${currentPage * 80}vw)`;
         }
         
         function nextPage() {
