@@ -13,43 +13,36 @@
             width: 100vw;
             margin: 0;
             background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .book-container {
+            width: 60vw;
+            height: 80vh;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #ccc;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         .book {
-            position: relative;
-            width: 70vw;
-            height: 80vh;
-            perspective: 1500px;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
         .page {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: white;
-            border: 2px solid #ccc;
-            transform-origin: left;
-            transition: transform 1s ease-in-out;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            min-width: 60vw;
+            height: 80vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 3vw;
-            font-family: Arial, sans-serif;
-            backface-visibility: hidden;
-            flex-direction: column;
             text-align: center;
+            font-size: 2vw;
+            font-family: Arial, sans-serif;
+            background: white;
+            padding: 20px;
+            box-sizing: border-box;
         }
         .page:nth-child(odd) {
             background: #f9f9f9;
-        }
-        .page {
-            z-index: 10;
-        }
-        .page:nth-child(2) { z-index: 9; }
-        .page:nth-child(3) { z-index: 8; }
-        .page:nth-child(4) { z-index: 7; }
-        .flipped {
-            transform: rotateY(-180deg);
-            z-index: 1;
         }
         .controls {
             position: absolute;
@@ -66,92 +59,47 @@
             cursor: pointer;
             color: #333;
         }
-        .controls button:focus {
-            outline: none;
-        }
-        /* Stile specifico per le pagine */
-        #page1 {
-            background-image: url('https://example.com/image1.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 2px 2px 4px #000000;
-        }
-        #page2 {
-            background-image: url('https://example.com/image2.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 2px 2px 4px #000000;
-        }
-        #page3 {
-            background-image: url('https://example.com/image3.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 2px 2px 4px #000000;
-        }
-        #page4 {
-            background-image: url('https://example.com/image4.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-shadow: 2px 2px 4px #000000;
-        }
-        /* Aggiungi uno stile per le frasi */
         .quote {
             font-style: italic;
-            font-size: 2vw;
+            font-size: 1.5vw;
             margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="book">
-        <div class="page" id="page1">
-            <h1>Questo è per te</h1>
-            <h3>Il tuo regalo per San Valentino</h3>
-        </div>
-        <div class="page" id="page2">
-            <h1>06/10/2023</h1>
-            <p class="quote">Questo giorno, il 6 ottobre, il giorno in cui il destino ha deciso di farci riincontrare.
-            <br>
-            E' stato bellisimo, ho visto una scintilla, lo sai. i nostri cuori si sono incendiati. Mi hai fatto appiciare l'anima</p>
-        </div>
-        <div class="page" id="page3">
-            <h1>NOI</h1>
-            <p class="quote">Il nostro legame è "complicato", come ben sai. Si ok, siamo migliori amici, tuttavia sappiamo nei nostri cuori siamo anime gemelle</p>
-        </div>
-        <div class="page" id="page4">
-            <h1>L'unica</h1>
-            <p class="quote">Tu, sei sempre stata tu.
-            <br>
-            L'unica ragazza che voglio, e sempre verro.</p>
-        </div>
-        <div class="page" id="page5">
-            <h1>Un amore che non finisce</h1>
-            <p class="quote">Una persona che m'appiccia l'anima, io non la voglio perdere</p>
-        </div>
-        <!-- Modificato l'id per renderlo unico -->
-        <div class="page" id="page6">
-            <h1>La nostra felicità</h1>
-            <p class="quote">Ora tu stai con un altro, e fa male. ma noi presto, molto presto ci rimetteremo insieme</p>
-        </div>
-        <!-- Modificato l'id per renderlo unico -->
-        <div class="page" id="page7">
-            <h1>La nostra canzone</h1>
-            <p class="quote">Promessa - ASTOL</p>
-             <p>Baby, puoi dire tutto ciò che vuoi
-                Ma non puoi dividerli due come noi
-                Siamo una promessa
-                Quella che non finirà mai</p>
-        </div> 
-        <!-- Modificato l'id per renderlo unico -->
-        <div class="page" id="page8">
-            <h1>La nostra felicità</h1>
-            <p class="quote">Ora tu stai con un altro, e fa male. ma noi presto, molto presto ci rimetteremo insieme</p>
+    <div class="book-container">
+        <div class="book" id="book">
+            <div class="page">
+                <h1>Questo è per te</h1>
+                <h3>Il tuo regalo per San Valentino</h3>
+            </div>
+            <div class="page">
+                <h1>06/10/2023</h1>
+                <p class="quote">Il giorno in cui il destino ha deciso di farci riincontrare.</p>
+            </div>
+            <div class="page">
+                <h1>NOI</h1>
+                <p class="quote">Il nostro legame è "complicato", ma siamo anime gemelle.</p>
+            </div>
+            <div class="page">
+                <h1>L'unica</h1>
+                <p class="quote">Tu, sei sempre stata tu. L'unica ragazza che voglio.</p>
+            </div>
+            <div class="page">
+                <h1>Un amore che non finisce</h1>
+                <p class="quote">Una persona che mi accende l'anima, io non la voglio perdere.</p>
+            </div>
+            <div class="page">
+                <h1>La nostra felicità</h1>
+                <p class="quote">Ora tu stai con un altro, e fa male. Ma presto torneremo insieme.</p>
+            </div>
+            <div class="page">
+                <h1>La nostra canzone</h1>
+                <p class="quote">"Promessa" - ASTOL</p>
+            </div>
         </div>
     </div>
+
     <div class="controls">
         <button onclick="prevPage()">&#9664;</button>
         <button onclick="nextPage()">&#9654;</button>
@@ -159,19 +107,24 @@
 
     <script>
         let currentPage = 0;
+        const book = document.getElementById("book");
         const pages = document.querySelectorAll(".page");
+
+        function updateBookPosition() {
+            book.style.transform = `translateX(-${currentPage * 60}vw)`;
+        }
         
         function nextPage() {
             if (currentPage < pages.length - 1) {
-                pages[currentPage].classList.add("flipped");
                 currentPage++;
+                updateBookPosition();
             }
         }
         
         function prevPage() {
             if (currentPage > 0) {
                 currentPage--;
-                pages[currentPage].classList.remove("flipped");
+                updateBookPosition();
             }
         }
     </script>
