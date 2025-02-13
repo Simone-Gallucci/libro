@@ -46,6 +46,13 @@
             padding: 20px;
             box-sizing: border-box;
             background: linear-gradient(to bottom right, #e6ccff, #d8a7f2); /* Sfumatura su ogni pagina */
+            position: relative;
+            opacity: 0; /* Le immagini sono nascoste inizialmente */
+            transition: opacity 1s ease-in-out; /* Aggiungi transizione */
+        }
+
+        .page.show {
+            opacity: 1; /* Mostra l'immagine quando la classe 'show' è aggiunta */
         }
 
         .page:nth-child(odd) {
@@ -119,6 +126,18 @@
         .controls button:hover {
             transform: scale(1.2);
             color: #8A2BE2;
+        }
+
+        /* Aggiungi immagine di sfondo sfumato sulla pagina */
+        .page img {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 40%;
+            height: auto;
+            opacity: 0.15;
+            z-index: 0;
+            object-fit: cover;
         }
 
         /* Responsività per schermi piccoli */
@@ -199,11 +218,13 @@
     <div class="book-container">
         <div class="book" id="book">
             <div class="page">
+                <img src="https://example.com/photo1.jpg" alt="Immagine pagina 1">
                 <h1>Questo è per te</h1>
                 <h3>Il tuo regalo per San Valentino</h3>
             </div>
             
             <div class="page">
+                <img src="https://example.com/photo2.jpg" alt="Immagine pagina 2">
                 <h1>06/10/2023</h1>
                 <p class="quote">Il giorno in cui il destino ha deciso di farci riincontrare.
                     <br>
@@ -215,6 +236,7 @@
                 </p>
             </div>
             <div class="page">
+                <img src="https://example.com/photo3.jpg" alt="Immagine pagina 3">
                 <h1>23/11/2023</h1>
                 <P>Questo giorno, il piu bello della ia vita.
                     <br>
@@ -227,6 +249,7 @@
                 </P>
             </div>
             <div class="page">
+                <img src="https://example.com/photo4.jpg" alt="Immagine pagina 4">
                 <h1>NOI</h1>
                 <p class="quote">Il nostro legame è complicacto.
                     <br>
@@ -240,6 +263,7 @@
                 </p>
             </div>
             <div class="page">
+                <img src="https://example.com/photo5.jpg" alt="Immagine pagina 5">
                 <h1>L'unica</h1>
                 <p class="quote">Tu, sei sempre stata tu. L'unica ragazza che voglio.
                     <br>
@@ -257,6 +281,7 @@
                 </p>
             </div>
             <div class="page">
+                <img src="https://example.com/photo6.jpg" alt="Immagine pagina 6">
                 <h1>Un amore che non finisce</h1>
                 <p class="quote">Una persona che mi accende l'anima, io non la voglio perdere.
                     <br>
@@ -272,6 +297,7 @@
                 </p>
             </div>
             <div class="page">
+                <img src="https://example.com/photo7.jpg" alt="Immagine pagina 7">
                 <h1>La nostra felicità</h1>
                 <p class="quote">Ora tu stai con un altro, e fa male. Ma presto torneremo insieme.
                     <br>
@@ -287,6 +313,7 @@
                 </p>
             </div>
             <div class="page">
+                <img src="https://example.com/photo8.jpg" alt="Immagine pagina 8">
                 <h1>La nostra canzone</h1>
                 <p class="quote">"Promessa" - ASTOL</p>
                 <p>Baby, puoi dire tutto ciò che vuoi
@@ -314,20 +341,32 @@
         function updateBookPosition() {
             book.style.transform = `translateX(-${currentPage * 80}vw)`;
         }
-        
+
         function nextPage() {
             if (currentPage < pages.length - 1) {
                 currentPage++;
                 updateBookPosition();
             }
         }
-        
+
         function prevPage() {
             if (currentPage > 0) {
                 currentPage--;
                 updateBookPosition();
             }
         }
+
+        function showImages() {
+            // Aggiungi la classe "show" con un piccolo ritardo per ogni pagina
+            pages.forEach((page, index) => {
+                setTimeout(() => {
+                    page.classList.add('show');
+                }, index * 1000); // Ritardo di 1000ms per ogni pagina
+            });
+        }
+
+        // Mostra le immagini quando il contenuto è caricato
+        window.onload = showImages;
     </script>
 </body>
 </html>
