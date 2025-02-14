@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -6,9 +6,6 @@
     <title>Libro Interattivo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Raleway:wght@400;600&display=swap');
-     
-
-
 
         body {
             display: flex;
@@ -58,12 +55,16 @@
             color: #6A0DAD;
             text-shadow: 3px 3px 5px rgba(106, 13, 173, 0.5);
             margin-top: 10px;
+            z-index: 1; /* Testo sopra l'immagine */
+            position: relative;
         }
 
         h3 {
             font-size: 2vw;
             font-weight: bold;
             color: #8A2BE2;
+            z-index: 1; /* Testo sopra l'immagine */
+            position: relative;
         }
 
         p {
@@ -73,12 +74,16 @@
             max-width: 80%;
             font-family: 'Raleway', sans-serif;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            z-index: 1; /* Testo sopra l'immagine */
+            position: relative;
         }
 
         .quote {
             font-style: italic;
             font-size: 1.8vw;
             color: #000000;
+            z-index: 1; /* Testo sopra l'immagine */
+            position: relative;
         }
 
         .page img {
@@ -87,7 +92,7 @@
             margin-bottom: 20px;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            z-index: 0;
+            z-index: 0; /* Immagini sotto il testo */
         }
 
         .controls {
