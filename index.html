@@ -55,16 +55,16 @@
             color: #6A0DAD;
             text-shadow: 3px 3px 5px rgba(106, 13, 173, 0.5);
             margin-top: 10px;
-            z-index: 1; /* Testo sopra l'immagine */
-            position: relative;
+            position: relative; /* Necessario per il z-index */
+            z-index: 2; /* Testo sopra le immagini */
         }
 
         h3 {
             font-size: 2vw;
             font-weight: bold;
             color: #8A2BE2;
-            z-index: 1; /* Testo sopra l'immagine */
-            position: relative;
+            position: relative; /* Necessario per il z-index */
+            z-index: 2; /* Testo sopra le immagini */
         }
 
         p {
@@ -74,16 +74,16 @@
             max-width: 80%;
             font-family: 'Raleway', sans-serif;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-            z-index: 1; /* Testo sopra l'immagine */
-            position: relative;
+            position: relative; /* Necessario per il z-index */
+            z-index: 2; /* Testo sopra le immagini */
         }
 
         .quote {
             font-style: italic;
             font-size: 1.8vw;
             color: #000000;
-            z-index: 1; /* Testo sopra l'immagine */
-            position: relative;
+            position: relative; /* Necessario per il z-index */
+            z-index: 2; /* Testo sopra le immagini */
         }
 
         .page img {
@@ -92,7 +92,8 @@
             margin-bottom: 20px;
             border-radius: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            z-index: 0; /* Immagini sotto il testo */
+            position: relative; /* Necessario per il z-index */
+            z-index: 1; /* Immagini sotto il testo */
         }
 
         .controls {
