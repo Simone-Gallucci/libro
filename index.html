@@ -6,6 +6,19 @@
     <title>Libro Interattivo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Raleway:wght@400;600&display=swap');
+        .page {
+    position: relative;
+}
+.page img {
+    z-index: 0;
+}
+.page h1, .page p, .page .quote {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.7); /* Sfondo semi-trasparente per leggere meglio */
+    padding: 5px;
+    border-radius: 5px;
+}
 
         body {
             display: flex;
