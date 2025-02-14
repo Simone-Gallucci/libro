@@ -14,7 +14,7 @@
             height: 100vh;
             width: 100vw;
             margin: 0;
-            background: linear-gradient(to bottom right, #f3e5f5, #d1c4e9);
+            background: linear-gradient(to bottom, #d8a7f2, #e6ccff); /* Sfumatura di viola chiaro */
             overflow: hidden;
         }
 
@@ -27,14 +27,16 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             border-radius: 15px;
             background: white;
+        }
+
+        .book {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            transition: transform 0.5s ease-in-out;
         }
 
         .page {
-            width: 100%;
-            height: 100%;
+            min-width: 80vw;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -43,8 +45,18 @@
             font-family: 'Raleway', sans-serif;
             padding: 20px;
             box-sizing: border-box;
-            background: linear-gradient(to bottom right, #f3e5f5, #d1c4e9);
+            background: linear-gradient(to bottom right, #e6ccff, #d8a7f2); /* Sfumatura su ogni pagina */
             position: relative;
+            opacity: 0; /* Le immagini sono nascoste inizialmente */
+            transition: opacity 1s ease-in-out; /* Aggiungi transizione */
+        }
+
+        .page.show {
+            opacity: 1; /* Mostra l'immagine quando la classe 'show' è aggiunta */
+        }
+
+        .page:nth-child(odd) {
+            background: linear-gradient(to bottom right, #e6ccff, #d8a7f2); /* Sfumatura chiara anche per pagine dispari */
         }
 
         h1 {
@@ -61,40 +73,302 @@
             color: #8A2BE2;
         }
 
-        .image-container {
+        p {
+            font-size: 2.5vw;
+            color: #000000;
+            line-height: 1.5;
+            max-width: 80%;
+            font-family: 'Raleway', sans-serif;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 2vw;
+            margin-top: 20px;
+            color: #000000;
+        }
+
+        /* Cuore Animato */
+        .heart {
+            font-size: 10vw; /* Più grande per desktop */
+            margin-top: 10px;
+            animation: heartbeat 1.5s infinite;
+            z-index: 10; /* Assicuriamoci che sia sopra */
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.3); }
+            50% { transform: scale(1); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .controls {
             position: absolute;
-            width: 60%;
-            height: 60%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards 0.5s;
-        }
-
-        .image-container img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -55%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+        .controls button {
+            background: none;
+            border: none;
+            font-size: 6vw;
+            cursor: pointer;
+            color: #6A0DAD;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .controls button:hover {
+            transform: scale(1.2);
+            color: #8A2BE2;
+        }
+
+        /* Aggiungi immagine di sfondo sfumato sulla pagina */
+      .page img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra l'immagine */
+    width: 60%; /* Modifica la larghezza per un aspetto più centrato */
+    height: auto;
+    opacity: 0.15;
+    z-index: 0;
+    object-fit: cover;
+}
+
+
+        /* Responsività per schermi piccoli */
+        @media (max-width: 768px) {
+            .book-container {
+                width: 90vw;
+                height: 70vh;
+            }
+
+            .page {
+                min-width: 90vw;
+                height: 70vh;
+            }
+
+            h1 {
+                font-size: 8vw;
+            }
+
+            h3 {
+                font-size: 5vw;
+            }
+
+            p {
+                font-size: 4vw;
+            }
+
+            .quote {
+                font-size: 3vw;
+            }
+
+            .heart {
+                font-size: 12vw; /* Ancora più grande su mobile */
+            }
+
+            .controls button {
+                font-size: 8vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .book-container {
+                width: 95vw;
+                height: 60vh;
+            }
+
+            .page {
+                min-width: 95vw;
+                height: 60vh;
+            }
+
+            h1 {
+                font-size: 10vw;
+            }
+
+            h3 {
+                font-size: 7vw;
+            }
+
+            p {
+                font-size: 5vw;
+            }
+
+            .quote {
+                font-size: 4vw;
+            }
+
+            .heart {
+                font-size: 15vw; /* Ancora più grande */
+            }
+
+            .controls button {
+                font-size: 10vw;
+            }
         }
     </style>
 </head>
 <body>
     <div class="book-container">
-        <div class="page">
-            <h1>Questo è per te</h1>
-            <h3>Il tuo regalo per San Valentino</h3>
-            <div class="image-container">
-                <img src="image.png" alt="Foto di noi" />
+        <div class="book" id="book">
+            <div class="page">
+                <img src="https://example.com/photo1.jpg" alt="Immagine pagina 1">
+                <h1>Questo è per te</h1>
+                <h3>Il tuo regalo per San Valentino</h3>
+            </div>
+            
+            <div class="page">
+                <img src="https://example.com/photo2.jpg" alt="Immagine pagina 2">
+                <h1>06/10/2023</h1>
+                <p class="quote">Il giorno in cui il destino ha deciso di farci riincontrare.
+                    <br>
+                    Io e te siamo destinati, ad incintrarci per sempre.
+                    <br>
+                    Ne abbiamo avuto la prova ricordando le numerose volte che ci siamo
+                    <br>
+                    incontrati nel tempo.
+                </p>
+            </div>
+            <div class="page">
+                <img src="https://example.com/photo3.jpg" alt="Immagine pagina 3">
+                <h1>23/11/2023</h1>
+                <P>Questo giorno, il piu bello della ia vita.
+                    <br>
+                    Il giorno in cui
+                    <br>
+                    io e te siamo diventati
+                    <br>
+                    <b>NOI.</b>
+                    <br>
+                </P>
+            </div>
+            <div class="page">
+                <img src="https://example.com/photo4.jpg" alt="Immagine pagina 4">
+                <h1>NOI</h1>
+                <p class="quote">Il nostro legame è complicacto.
+                    <br>
+                    Noi, ci definiamo migliori amici, 
+                    <br>
+                    ma sappiamo entrambi che siamo molto di piu.
+                    <br>
+                    siamo 
+                    <br>
+                    <b>ANIME GEMELLE</b>
+                </p>
+            </div>
+            <div class="page">
+                <img src="https://example.com/photo5.jpg" alt="Immagine pagina 5">
+                <h1>L'unica</h1>
+                <p class="quote">Tu, sei sempre stata tu. L'unica ragazza che voglio.
+                    <br>
+                    Gli unici occhi vogio vedere, i tuoi.
+                    <br>
+                    Le unche mani che voglio tenere, le tue.
+                    <br>
+                    L'nica pelle che vogio toccare, la tua.
+                    <br>
+                    Le uniche labbra che voglio baciare, le tue
+                    <br>
+                    L'unico sorriso che voglio vedere, il tuo.
+                    <br>
+                    L'unica che voglio, te.
+                </p>
+            </div>
+            <div class="page">
+                <img src="https://example.com/photo6.jpg" alt="Immagine pagina 6">
+                <h1>Un amore che non finisce</h1>
+                <p class="quote">Una persona che mi accende l'anima, io non la voglio perdere.
+                    <br>
+                    Non importa quello che succede, e succedera tra di noi.
+                    <br>
+                    Nessuno riuscira a spezzare il nostro legame,
+                    <br>
+                    a diverci.
+                    <br>
+                    Ti ho fatto una promessa: Sempre e Per Sempre.
+                    <br>
+                    E intendo mantenerla.
+                </p>
+            </div>
+            <div class="page">
+                <img src="https://example.com/photo7.jpg" alt="Immagine pagina 7">
+                <h1>La nostra felicità</h1>
+                <p class="quote">Ora tu stai con un altro, e fa male. Ma presto torneremo insieme.
+                    <br>
+                    Perche nonostante tutto noi siamo anime gemelle.
+                    <br>
+                    Tu sei il mio binario.
+                    <br>
+                    Tante persone dicono che casabsono 4 ura e un tetto. 
+                    <br>
+                    Per me sono i tuoi ochhi, il tuo sorriso, e le tue braccia che mi stringon forte
+                    <br>
+                    Questo per me è casa
+                </p>
+            </div>
+            <div class="page">
+                <img src="https://example.com/photo8.jpg" alt="Immagine pagina 8">
+                <h1>La nostra canzone</h1>
+                <p class="quote">"Promessa" - ASTOL</p>
+                <p>Baby, puoi dire tutto ciò che vuoi
+                    <br>
+                   Ma non puoi dividerli due come noi
+                   <br>
+                   Siamo una promessa
+                   <br>
+                   Quella che non finirà mai
+                </p>
             </div>
         </div>
     </div>
+
+    <div class="controls">
+        <button onclick="prevPage()">&#9664;</button>
+        <button onclick="nextPage()">&#9654;</button>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const book = document.getElementById("book");
+        const pages = document.querySelectorAll(".page");
+
+        function updateBookPosition() {
+            book.style.transform = `translateX(-${currentPage * 80}vw)`;
+        }
+
+        function nextPage() {
+            if (currentPage < pages.length - 1) {
+                currentPage++;
+                updateBookPosition();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updateBookPosition();
+            }
+        }
+
+        function showImages() {
+            // Aggiungi la classe "show" con un piccolo ritardo per ogni pagina
+            pages.forEach((page, index) => {
+                setTimeout(() => {
+                    page.classList.add('show');
+                }, index * 1000); // Ritardo di 1000ms per ogni pagina
+            });
+        }
+
+        // Mostra le immagini quando il contenuto è caricato
+        window.onload = showImages;
+    </script>
 </body>
 </html>
